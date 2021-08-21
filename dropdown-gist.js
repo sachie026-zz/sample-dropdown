@@ -1,7 +1,7 @@
 /*
  * A simple React component
 
-   Answer for the 5th questions
+   Answer for the 5th question
    -> We can just have the function wich return the array of items, then we just have to assign it to
       any variable. Then just loop through it using the map function.
       example:
