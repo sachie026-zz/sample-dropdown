@@ -11,7 +11,11 @@ class Dropdown extends React.Component {
 
   toggle() {
     const { isOpen } = this.state;
-    this.setState({ isOpen: !isOpen });
+    this.setState({ isOpen: !isOpen }, () => {
+      let syncObject = {};
+      syncObject[this.props.serverKey] = this.state.isOpen;
+      app.sync("PATCH", "user", { ...syncObject });
+    });
   }
 
   render() {
@@ -60,7 +64,8 @@ class ExampleNav extends React.Component {
     return (
       <nav>
         <a href="/page1">Page 1</a>
-        <Dropdown label="More items">
+        {/* Pass the serverKey prop to sync with server */}
+        <Dropdown label="More items" serverKey="dropdown_1_state">
           {/* Pass the key prop to each child using */}
           <DropdownItem key="page2" href="/page2">
             Page 2
@@ -72,7 +77,7 @@ class ExampleNav extends React.Component {
             Page 4
           </DropdownItem>
         </Dropdown>
-        <Dropdown label="Even more items">
+        <Dropdown label="Even more items" serverKey="dropdown_2_state">
           <DropdownItem key="page5" href="/page5">
             Page 5
           </DropdownItem>
