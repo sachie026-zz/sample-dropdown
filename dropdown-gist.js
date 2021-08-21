@@ -1,8 +1,24 @@
 /*
  * A simple React component
- */
 
-class Dropdown extends React.Component {
+   Answer for the 5th questions
+   -> We can just have the function wich return the array of items, then we just have to assign it to
+      any variable. Then just loop through it using the map function.
+      example:
+      Const dropDownItems = [item1,item2...];
+      <Dropdown>
+        {
+            dropDownItems.map((item, index) => {
+                <DropdownItem key=`page${index}` href=`/page${index}`>
+                    Page {index}
+                </DropdownItem>
+            })
+        }
+      </Dropdown>  
+ */
+import React, { PureComponent } from "react";
+
+class Dropdown extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };
@@ -48,7 +64,7 @@ class Dropdown extends React.Component {
   }
 }
 
-class DropdownItem extends React.Component {
+class DropdownItem extends PureComponent {
   render() {
     return (
       <div>
@@ -59,7 +75,7 @@ class DropdownItem extends React.Component {
   }
 }
 
-class ExampleNav extends React.Component {
+class ExampleNav extends PureComponent {
   render() {
     return (
       <nav>
